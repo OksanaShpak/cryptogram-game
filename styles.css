@@ -1,50 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  justify-content: space-between;
+  height: 100vh;
+  text-transform: uppercase;
+}
 
 ul {
-  display: block;
   list-style: none;
   margin: 0;
   padding: 0;
+  display: block;
   font-family: monospace;
   line-height: 3;
   text-align: center;
+}
 
-  li {
-    display: inline-block;
-    padding-right: 1ch;
+li {
+  display: inline-block;
+  padding-right: 1ch;
+}
 
-    ul {
-      li {
-        display: inline;
-        padding-right: 0;
-        margin-right: 2px;
-        position: relative;
-        cursor: pointer;
+#sentence {
+  li li {
+    display: inline;
+    padding-right: 0;
+    margin-right: 2px;
+    position: relative;
+    cursor: pointer;
 
-        &:not(.is-open) {
-          color: transparent;
-        }
-
-        &::before {
-          position: absolute;
-          content: "";
-          display: block;
-          height: 1px;
-          background-color: black;
-          top: 105%;
-          left: 0;
-          right: 0;
-        }
-        &::after{
-          position: absolute;
-          content: attr(data-code);
-          display: block;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 0.1em;
-          color: black;
-        }
-      }
+    &:not(.is-open) {
+      color: transparent;
     }
+
+    &.is-target {
+      background-color: lightgreen;
+      box-shadow: 0 0 0 0.5px forestgreen;
+    }
+
+    &.is-mistake:not(.is-open) {
+      animation: blink 0.5s forwards;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      display: block;
+      height: 1px;
+      background-color: black;
+      top: 105%;
+      left: 0;
+      right: 0;
+    }
+
+    &::after {
+      position: absolute;
+      content: attr(data-code);
+      display: block;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.1em;
+      color: black;
+    }
+
+  }
+}
+
+@keyframes blink {
+  from {
+    background-color: lightpink;
+    box-shadow: 0 0 0 0.5px pink;
   }
 }
